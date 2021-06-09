@@ -1,6 +1,3 @@
-if (tensorflow::tf$executing_eagerly())
-    tensorflow::tf$compat$v1$disable_eager_execution()
-
 fit_vae <- function(object = NULL,
                     x_train = NULL,
                     x_val = NULL,
@@ -22,6 +19,9 @@ fit_vae <- function(object = NULL,
                     use_generator = FALSE,
                     optimizer = "adam",
                     validation_split = 0, ...) {
+    if (tensorflow::tf$executing_eagerly())
+        tensorflow::tf$compat$v1$disable_eager_execution()
+    
     result <- NULL
     result$preprocessing <- NULL
     x_val <- NULL
@@ -312,11 +312,11 @@ plot_vae <- function(x, node_color = list(encoder_col = "tomato",
     node_info <- data.frame(layer_name, layer_type, layer_input_shape, layer_output_shape)
     
     # edge information
-    inbound <- x$layers %>%
-        purrr::map("inbound_nodes") %>%
-        purrr::map(1) %>%
-        purrr::map(get_config) %>%
-        purrr::map("inbound_layers")
+    inbound <- lapply(x$layers %>%
+                        purrr::map("inbound_nodes") %>%
+                        purrr::map(1) %>%
+                        purrr::map("inbound_layers"),
+                    function(x) switch(length(x), x$name, unlist(x %>% purrr::map("name"))))
     
     if (length(Filter(Negate(is.null), inbound)) == 0) {
         edge_info <- embed(rownames(node_info), dimension = 2)
