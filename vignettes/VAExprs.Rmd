@@ -1,7 +1,7 @@
 ---
 title: "Genearting Samples with Gene Expression Data with Variational Autoencoders"
 author: "Dongmin Jung"
-date: June 7, 2021
+date: June 20, 2021
 output:
     rmarkdown::html_document:
         highlight: pygments
@@ -25,7 +25,7 @@ vignette: >
 
 # Introduction
 
-A fundamental problem in biomedical research is the low number of observations, mostly due to a lack of available biosamples, prohibitive costs, or ethical reasons. By augmenting a few real observations with artificially generated samples, their analysis could lead to more robust and higher reproducible. One possible solution to the problem is the use of generative models, which are statistical models of data that attempt to capture the entire probability distribution from the observations. Using the variational autoencoder (VAE), a well-known deep generative model, this package is aimed to generate samples with gene expression data, especially for single-cell RNA-seq data. Furthermore, the VAE can use conditioning to produce specific cell types or subpopulations. The conditional VAE (CVAE) allows us to create targeted samples rather than completely random ones.
+A fundamental problem in biomedical research is the low number of observations, mostly due to a lack of available biosamples, prohibitive costs, or ethical reasons. By augmenting a few real observations with artificially generated samples, their analysis could lead to more robust and higher reproducibility. One possible solution to the problem is the use of generative models, which are statistical models of data that attempt to capture the entire probability distribution from the observations. Using the variational autoencoder (VAE), a well-known deep generative model, this package is aimed to generate samples with gene expression data, especially for single-cell RNA-seq data. Furthermore, the VAE can use conditioning to produce specific cell types or subpopulations. The conditional VAE (CVAE) allows us to create targeted samples rather than completely random ones.
 
 Autoencoders are an unsupervised neural networks that perform data compression from multidimensional to a preferred dimensionality. They reconstruct input data using the hidden layer weights calculated by encoding. The basic idea of an autoencoder is to have an output layer with the same dimensionality as the inputs. The idea is to try to reconstruct each dimension exactly by passing it through the network. It is common but not necessary for an autoencoder to have a symmetric architecture between the input and output. The number of units in the middle layer is typically fewer than that in the input or output. After training an autoencoder, it is not necessary to use both the encoder and decoder portions. For example, when using the approach for dimensionality reduction, one can use the encoder portion in order to create the reduced representations of the data. The reconstructions of the decoder might not be required at all. As a result, an autoencoder is capable of performing dimension reduction. The objective function of this neural network encompasses reconstruction loss. The loss function uses the sum of squared differences between the input and the output in order to force the output to be as similar as possible to the input. Also, the cross-entropy can used as a loss function for quantifying the difference between two probability distributions.
 
