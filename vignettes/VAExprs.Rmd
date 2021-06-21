@@ -1,5 +1,5 @@
 ---
-title: "Genearting Samples with Gene Expression Data with Variational Autoencoders"
+title: "Genearting Samples of Gene Expression Data with Variational Autoencoders"
 author: "Dongmin Jung"
 date: June 20, 2021
 output:
