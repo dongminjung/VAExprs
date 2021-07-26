@@ -200,7 +200,7 @@ fit_vae <- function(object = NULL,
                 validation_steps <- ceiling(nrow(x_val)/batch_size)
             }
             
-            model %>% keras::fit_generator(
+            model %>% keras::fit(
                 DeepPINCS::multiple_sampling_generator(
                     list(x_train), x_train,
                     batch_size = batch_size),
@@ -242,7 +242,7 @@ fit_vae <- function(object = NULL,
                 validation_steps <- ceiling(nrow(x_val)/batch_size)
             }
             
-            model %>% fit_generator(
+            model %>% keras::fit(
                 DeepPINCS::multiple_sampling_generator(
                     list(x_train, cbind(y_train)), cbind(x_train),
                     batch_size = batch_size),
