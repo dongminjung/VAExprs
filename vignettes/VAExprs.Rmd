@@ -99,7 +99,6 @@ vae_result <- fit_vae(x_train = x_train, x_val = x_train,
                                         layer_dense(units = original_dim,
                                                     activation = "sigmoid")),
                     epochs = epochs, batch_size = batch_size,
-                    validation_split = 0.5,
                     use_generator = FALSE,
                     callbacks = keras::callback_early_stopping(
                         monitor = "val_loss",
