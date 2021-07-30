@@ -24,8 +24,6 @@ fit_vae <- function(object = NULL,
     
     result <- NULL
     result$preprocessing <- NULL
-    x_val <- NULL
-    y_val <- NULL
     if (regularization < 0) {
         stop("regularization parameter should be nonnegative")
     }
