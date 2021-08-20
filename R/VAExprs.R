@@ -65,7 +65,7 @@ fit_vae <- function(object = NULL,
     
     if (any(unlist(lapply(preprocessing, is.null)))) {
         if (is.null(object) & is.null(x_val) & validation_split) {
-            message("preprocessing...")
+            message("pre-processing...")
             x <- x_train
             idx <- sample(seq_len(nrow(x)))
             train_idx <- seq_len(nrow(x)) %in%
@@ -389,12 +389,12 @@ gen_exprs <- function(x,
         if (!use_generator) {
             x_gen <- predict(decoder, z_sample[,-1])
         } else {
-            x_gen <- predict_generator(decoder,
-                                        DeepPINCS::multiple_sampling_generator(
-                                            list(z_sample[,-1]),
-                                            batch_size = batch_size,
-                                            shuffle = FALSE),
-                                        steps = ceiling(nrow(z_sample)/batch_size))
+            x_gen <- predict(decoder,
+                             DeepPINCS::multiple_sampling_generator(
+                                 list(z_sample[,-1]),
+                                 batch_size = batch_size,
+                                 shuffle = FALSE),
+                             steps = ceiling(nrow(z_sample)/batch_size))
         }
         
     } else {
@@ -416,12 +416,12 @@ gen_exprs <- function(x,
         if (!use_generator) {
             x_gen <- predict(decoder, cbind(z_sample, y_gen))
         } else {
-            x_gen <- predict_generator(decoder,
-                                        DeepPINCS::multiple_sampling_generator(
-                                            list(cbind(z_sample, y_gen)),
-                                            batch_size = batch_size,
-                                            shuffle = FALSE),
-                                        steps = ceiling(nrow(z_sample)/batch_size))
+            x_gen <- predict(decoder,
+                             DeepPINCS::multiple_sampling_generator(
+                                 list(cbind(z_sample, y_gen)),
+                                 batch_size = batch_size,
+                                 shuffle = FALSE),
+                             steps = ceiling(nrow(z_sample)/batch_size))
         }
     }
     
