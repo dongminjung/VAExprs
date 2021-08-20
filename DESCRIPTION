@@ -2,8 +2,8 @@ Package: VAExprs
 Type: Package
 Title: Genearting Samples of Gene Expression Data with Variational Autoencoders
 Description: A fundamental problem in biomedical research is the low number of observations, mostly due to a lack of available biosamples, prohibitive costs, or ethical reasons. By augmenting a few real observations with artificially generated samples, their analysis could lead to more robust and higher reproducible. One possible solution to the problem is the use of generative models, which are statistical models of data that attempt to capture the entire probability distribution from the observations. Using the variational autoencoder (VAE), a well-known deep generative model, this package is aimed to generate samples with gene expression data, especially for single-cell RNA-seq data. Furthermore, the VAE can use conditioning to produce specific cell types or subpopulations. The conditional VAE (CVAE) allows us to create targeted samples rather than completely random ones.
-Version: 0.99.17
-Date: 2021-07-26
+Version: 0.99.18
+Date: 2021-08-21
 Authors@R: c(person(given="Dongmin", family="Jung", email="dmdmjung@gmail.com", role=c("cre", "aut"), comment = c(ORCID = "0000-0001-7499-8422")))
 LazyData: TRUE
 Depends: keras, mclust
